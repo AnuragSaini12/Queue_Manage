@@ -24,5 +24,14 @@ async function createUser(req, res) {
     }
   );
 }
+async function handleGetUser(req, res) {
+  Connection.query("SELECT * FROM user_login", (result, err) => {
+    if (err) {
+      return res.status(404).json({ message: "problem occur" });
+    } else {
+      res.send(result);
+    }
+  });
+}
 
 module.exports = { createUser };
